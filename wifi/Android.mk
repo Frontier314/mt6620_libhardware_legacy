@@ -28,6 +28,14 @@ ifdef WIFI_DRIVER_FW_PATH_PARAM
 LOCAL_CFLAGS += -DWIFI_DRIVER_FW_PATH_PARAM=\"$(WIFI_DRIVER_FW_PATH_PARAM)\"
 endif
 
+ifeq ($(CONNECTIVITY_SOLUTION),mtk)
+LOCAL_SRC_FILES += wifi/wifi_mtk.c
+    #Support hotspot
+    LOCAL_SRC_FILES +=  wifi/wifi_common.c
+    LOCAL_SRC_FILES +=  wifi/wifi_hotspot.c
+    LOCAL_SRC_FILES +=  wifi/wifi_direct.c
+else
 LOCAL_SRC_FILES += wifi/wifi.c
+endif
 
 LOCAL_SHARED_LIBRARIES += libnetutils
